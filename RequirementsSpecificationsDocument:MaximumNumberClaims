@@ -1,0 +1,70 @@
+Requirements Specifications Document : Which disease has a maximum number of claims.
+1.	 Introduction – 
+a.	Purpose – The purpose of this requirement is to identify the disease with the highest number of insurance claims. By determining this, the healthcare insurance company can gain insights into prevalent health issues among policyholders, allowing them to adjust policy coverage can gain insights into prevalent health issue among policyholders, understanding disease patterns also supports strategic partnerships with healthcare providers and enables the design of preventive healthcare incentives that could reduce future claim volumes, ultimately leading to improved cost management and customer satisfaction.
+b.	Intended Audience and Use – The intended audience for this requirement to includes the following within the organization:
+•	Data Analysts: Analysts will use the output of this requirement to identify high-claim diseases and generate insights regarding prevalent health trends among customers. This information will support strategic decision around policy offerings and targeted marketing.
+•	Developers: Developers will reference this requirement to build and validate the data pipeline, ensuring that claims data is accurately processed, aggregate, and queried in a way that allows efficient identification of the disease with the highest claims.
+•	Project Managers: Project managers will use this requirement to track progress and ensure alignment with the overall business objectives of the project. They will validate that the implementation supports the company’s goals of enhancing revenue through customer insights.
+
+c.	Product Scope – This requirement aims to provide insights into high-claim diseases, enabling the healthcare insurance company to make data-driven decisions that optimize policy offerings, set competitive premiums, and enhance customer satisfaction through targeted health initiatives. By identifying the most frequently claimed diseases, the company can develop strategic, data-backed products and wellness incentives, aligning with business goals of increased revenue and improved customer engagement. The resulting insights will support multiple teams, including strategy, marketing, and finance, in shaping effective customer engagement and product development strategies.
+d.	Definitions and Acronyms –
+•	Claim: An insurance request made by policyholders to cover specific healthcare expenses, processed and paid by the insurance company based on policy terms.
+•	Premium: A regular payment made by a subscriber to maintain their insurance coverage.
+•	PII (Personally Identifiable Information): Any data that can identify an individual, requiring special protection under privacy laws and regulations.
+•	SRS (Software Requirements Specification): A document describing software functionality, requirements, and intended behavior to guide development and ensure alignment with business goals.
+•	AWS (Amazon Web Services): A cloud computing platform providing a variety of on-demand infrastructure and services, including storage, databases, and data processing tools.
+•	S3 (Simple Storage Service): An object storage service from AWS, used to store and retrieve large volumes of data.
+•	Redshift: A fully managed data warehouse service by AWS, designed for large-scale data storage and analysis.
+•	Databricks: A cloud-based platform for big data processing and machine learning, often used with Apache Spark.
+•	ETL (Extract, Transform, Load): A data integration process that involves extracting data from various sources, transforming it to fit operational needs, and loading it into a data storage system.
+2.	Overall Description – The product is a data pipeline and analytics solution designed to help a healthcare insurance company to analyze customer behavior, claims data, and competitor information. This analysis will provide insights into disease trends, policyholder demographics, and claims frequency, enabling the company to make data-driven decisions to boost revenue, improve customer engagement, and optimize policy offering. 
+a.	 User Needs – 
+•	Data Analyst: Data analysts will use the product to process and analyze claims data, identifying trends such as high-claim diseases and demographic patterns. They need efficient data processing and easy access to insights for generating reports that guide business decisions.
+•	Business Strategists and Decision-Makers: Strategists and decision-makers will rely on the product for insights to shape insurance offerings, marketing strategies, and customer segmentation. They require clear, actionable summaries to support informed decision-making.
+•	Pricing Teams: Pricing teams will use the data to adjust premiums and manage risks. The need information on claim frequency and costs associated with diseases, demographics, and locations to develop accurate pricing models.
+•	Customer Service and Sales Teams: Customer service and sales teams will use insights to target marketing and sales efforts. They need relevant data on customer behavior and claims trends to tailor offerings and improve customer engagement.
+•	IT and Engineering Teams: IT and engineering teams will ensure the product’s stability, scalability, and integration with AWS, Databricks and others. They require a well-documented, maintainable system that runs efficiently across all platforms. 
+b.	 Assumptions and Dependencies – 
+•	Assumptions:
+o	Availability of Clean Data: It is assumed that the data provided (claims, patients, subscribers etc.) is mostly clean, structured, and up to date. Any required data cleaning processes will be applied during the pipeline creation, but initial data integrity is essential for accurate analysis.
+o	Tools and Technologies: The product assumes that the team has experience working with the technologies specified (PySpark, AWS, Databricks, Jira, GitHub) and that these tools are available and compatible for implementation.
+o	Security Compliance: It is assumed that the company has the necessary security protocols in place for handling sensitive data, including PII, in accordance with applicable privacy laws and industry regulations.
+o	Stakeholder Availability: It is assumed that the required stakeholders (e.g., business strategists, data analysts, etc.) will be available for feedback and collaboration during the development and implementation phases.
+•	Dependencies:
+o	Data Sources: The product depends on access to external data sources, such as competitor data or third-party data, that may impact the comprehensiveness of the analysis.
+o	AWS Services: The solution depends on AWS services (S3 for data storage, Redshift for data warehousing, EMR for processing) being correctly configured and scalable as per project needs.
+o	Jira and GitHub: The product’s development and project management processes depend on Jira for tracking tasks and GitHub for version control and code management.
+o	Team Expertise: The successful implementation of this product depends on the technical skills of the team in using AWS, Databricks, PySpark, and related tools.
+o	Performance and Scalability: The system’s performance and scalability depend on the efficient handling of large volumes of claims and customer data across distributed platforms (AWS, Databricks).
+3.	System Features and Requirements -
+a.	Functional Requirements – 
+•	The system should ingest data from multiple sources, including internal claims databases, external third-party data, and competitor data.
+•	Data should be stored in AWS S3 as raw input files and organized within folders for efficient access.
+•	Perform data cleaning to handle missing values, duplicates, and incorrect data formats.
+•	Transform cleaned data into a standardized format and load it into Redshift tables for further processing.
+•	The system should process data to generate insights, including disease trends, subscriber demographics, and claims patterns, using PySpark on Databricks.
+•	Execute queries on Redshift to fulfill requirements, such as identifying diseases with maximum claims and filtering subscribers by specific criteria.
+•	Store analysis results in dedicated Redshift tables within a schema (e.g., Project-Output) for easy access by stakeholders.
+•	Results should be updated regularly to reflect the latest data and insights.
+b.	External Interface Requirements – 
+•	The system must integrate with AWS S3, Redshift, and Databricks, allowing seamless data flow and compatibility.
+•	Results and alerts from the data pipeline should be accessible to stakeholders via notifications in Jira, and reports should be downloadable for review.
+
+c.	System Features – 
+•	Automated Data Pipeline: The system should have an automated ETL (Extract, Transform, Load) pipeline to handle data ingestion, processing, and loading into Redshift tables.
+•	Error Handling and Logging: Implement error handling to capture and log issues in data processing or ingestion, alerting the IT team as necessary.
+•	Data Quality Checks: Perform regular data quality checks, ensuring the accuracy and completeness of the claims data processed.
+
+d.	Nonfunctional Requirements – 
+1.	Performance Requirements
+•	The system should be able to handle large volumes of data efficiently, processing and delivering insights within a reasonable time frame.
+•	Data pipeline tasks, including ingestion, cleaning, transformation, and loading, should complete within defined SLAs to support timely analysis.
+2.	Security Requirements
+•	Implement access controls to protect sensitive data, ensuring only authorized users can access the claims and subscriber data.
+•	Compliance with data privacy regulations (e.g., HIPAA) is mandatory, especially concerning PII (Personally Identifiable Information).
+3.	Usability Requirements
+•	The dashboard and reporting interface should be intuitive for non-technical users, with clearly labeled visualizations and summaries.
+•	Reports should be downloadable in common formats, such as PDF or Excel, to support analysis and presentations.
+4.	Scalability Requirements
+•	The system must be scalable to handle increased data volumes as claims data and third-party data grow.
+•	Ensure that the Redshift data warehouse and Databricks processing environments can be scaled up as needed to maintain performance.
